@@ -9,6 +9,7 @@ import { orderRouter } from "./routes/order.route";
 import { notificationRouter } from "./routes/notification.route";
 import { analyticsRouter } from "./routes/analytics.route";
 import { layoutRouter } from "./routes/layout.route";
+import {rateLimit} from "express-rate-limit";
 // import userRouter
 
 // create a server
@@ -27,7 +28,12 @@ app.use(
     credentials:true
   })
 );
-
+const limiter = rateLimit({
+  windowMs:15*60*1000,
+  limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+	legacyHeaders: false,
+})
 // routes
 app.use(
   "/api/v1",
@@ -51,6 +57,6 @@ app.all("*", (req: Request, res: Response, next: NextFunction) => {
   err.statusCode = 404;
   next(err);
 });
-
+app.use(limiter)
 // middleware calls
 app.use(ErrorMiddleware);
