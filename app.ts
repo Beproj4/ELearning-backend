@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(
   cors({
     // origin: process.env.ORIGIN,
-    origin:["http://localhost:3000"],
+    origin:["https://e-learning-frontend-phi.vercel.app/"],
     credentials:true
   })
 );
