@@ -25,7 +25,7 @@ exports.app.use((0, cookie_parser_1.default)());
 // cors =>
 exports.app.use((0, cors_1.default)({
     // origin: process.env.ORIGIN,
-    origin: "https://e-learning-frontend-phi.vercel.app/",
+    origin:"https://e-learning-frontend-4gz0fs8zq-beproj4s-projects.vercel.app/",
     credentials: true
 }));
 // routes
