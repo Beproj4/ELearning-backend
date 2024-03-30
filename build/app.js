@@ -36,6 +36,15 @@ exports.app.get("/test", (req, res, next) => {
         message: "API is working",
     });
 });
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://e-learning-frontend-phi.vercel.app/");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    if (req.method === "OPTIONS") {
+      res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+      return res.status(200).json({});
+    }
+    next();
+  });
 // unknown route
 exports.app.all("*", (req, res, next) => {
     const err = new Error(`Route ${req.originalUrl} not found`);
