@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(
   cors({
     // origin: process.env.ORIGIN,
-    origin:"https://e-learning-frontend-4gz0fs8zq-beproj4s-projects.vercel.app/",
+    origin:"https://e-learning-frontend-phi.vercel.app/",
     credentials:true
   })
 );

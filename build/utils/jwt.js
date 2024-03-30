@@ -32,10 +32,10 @@ const sendToken = (user, statusCode, res) => {
     //By uploading the session (user information or token details) to Redis, the server can efficiently manage the state of tokens and quickly determine if a token is valid or has been revoked.
     redis_1.redis.set(user._id, JSON.stringify(user));
     // set secure true only when in production
-    if (process.env.NODE_ENV === "production") {
-        exports.accessTokenOptions.secure = true;
-        exports.refreshTokenOptions.secure = true;
-    }
+    // if (process.env.NODE_ENV === "production") {
+    //     exports.accessTokenOptions.secure = true;
+    //     exports.refreshTokenOptions.secure = true;
+    // }
     // send tokens to cookies
     res.cookie("access_token", accessToken, exports.accessTokenOptions);
     res.cookie("refresh_token", refreshToken, exports.refreshTokenOptions);
